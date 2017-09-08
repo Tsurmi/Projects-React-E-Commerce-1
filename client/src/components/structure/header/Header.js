@@ -8,7 +8,7 @@ const styles = {
     left: 0,
     right: 0,
     height: 50,
-    backgroundColor: 'green',
+    backgroundColor: 'blue',
     display: 'flex',
     alignItems: 'center',
     paddingLeft: 20,
@@ -28,6 +28,8 @@ const Header = () =>
       <NavItem to='/'>Home</NavItem>
       <NavItem to='/about'>About</NavItem>
       <NavItem to='/products'>Products</NavItem>
+      <NavItem to='/signup'>New User</NavItem>
+      <NavItem to='/login'>Log In</NavItem>
     </nav>
   </header>
 

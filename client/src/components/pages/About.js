@@ -2,7 +2,7 @@ import React from 'react'
 
 const styles = {
   about: {
-    backgroundImage: `url(https://s3.envato.com/files/119204175/Preview%20Image%20Set%20/coming%20soon%20Page%20PSD.jpg)`,
+    backgroundImage: `url(http://www.barmelusine.com/uploads/_800x800_crop_center-center_75/gallery-02.jpg)`,
     width: '100vw',
     height: '100vh',
     backgroundRepeat: 'no-repeat',

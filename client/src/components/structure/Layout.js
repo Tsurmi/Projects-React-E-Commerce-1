@@ -8,8 +8,8 @@ const propTypes = {
   domainData: AppPropTypes.domainData
 }
 
-const Layout = (props) => (
-  <div id='layout'>
+const Layout = (props, i) => (
+  <div key={i} id='layout'>
     <Header />
     <Main domainData={props.domainData} />
     <Footer />

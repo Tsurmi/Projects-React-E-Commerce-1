@@ -10,7 +10,8 @@ import * as ServerApi from './lib/serverApi'
 class DomainDataProvider extends Component {
   state = {
     isLoaded: false,
-    products: []
+    products: [],
+    user: null
   }
 
   componentDidMount () {
@@ -30,6 +31,9 @@ class DomainDataProvider extends Component {
   updateProduct = (product) =>
     ServerApi.updateProduct(product, this.getAllProducts)
 
+  deleteProduct = (productId) =>
+    ServerApi.deleteProduct(productId, this.getAllProducts)
+
   findProductById = (productId) => {
     for (let i = 0; i < this.state.products.length; i++) {
       const currentProduct = this.state.products[i]
@@ -39,13 +43,26 @@ class DomainDataProvider extends Component {
     }
   }
 
+  signUpUser = (user) => {
+    ServerApi.signUpUser(user, (savedUser) => this.setState({
+      user: savedUser
+    }))
+  }
+
+  loginUser = (email, password) => {
+    ServerApi.loginUser(email, password, () => {
+      console.log('login user called')
+    })
+  }
   render () {
     const domainData = {
       isLoaded: this.state.isLoaded,
       products: this.state.products,
       addProduct: this.addProduct,
       findProductById: this.findProductById,
-      updateProduct: this.updateProduct
+      updateProduct: this.updateProduct,
+      deleteProduct: this.deleteProduct,
+      signUpUser: this.signUpUser
     }
 
     return this.state.isLoaded ? <Layout domainData={domainData} /> : null

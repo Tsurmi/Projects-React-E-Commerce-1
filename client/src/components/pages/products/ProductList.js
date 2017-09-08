@@ -11,9 +11,9 @@ const propTypes = {
 
 const styles = {
   list: {
-    fontSize: 20,
-    textDecoration: 'none',
-    color: 'green'
+    fontSize: 25,
+    // textDecoration: 'none',
+    color: 'black'
 
   }
 }
@@ -27,6 +27,7 @@ const ProductList = (props) =>
         key={product.id}
         product={product}
         onEdit={() => props.history.push(`/products/edit/${product._id}`)}
+        onDelete={() => props.domainData.deleteProduct(product._id)}
       />
     )
     }
