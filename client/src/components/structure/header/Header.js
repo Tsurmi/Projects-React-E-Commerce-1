@@ -7,8 +7,8 @@ const styles = {
     top: 0,
     left: 0,
     right: 0,
-    height: 30,
-    backgroundColor: 'blue',
+    height: 50,
+    backgroundColor: 'lightblue',
     display: 'flex',
     alignItems: 'center',
     paddingLeft: 20,
@@ -16,7 +16,7 @@ const styles = {
   },
   link: {
     padding: 15,
-    color: 'white',
+    color: 'black',
     fontSize: 25,
     textDecoration: 'none'
   }

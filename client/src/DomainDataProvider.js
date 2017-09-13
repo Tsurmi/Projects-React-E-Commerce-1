@@ -19,20 +19,24 @@ class DomainDataProvider extends Component {
   }
 
   getAllProducts = () =>
-    ServerApi.getAllProducts(products =>
-      this.setState({
-        isLoaded: true,
-        products: products
-      }))
+    ServerApi.getAllProducts()
+      .then(products =>
+        this.setState({
+          isLoaded: true,
+          products: products
+        }))
 
   addProduct = (newProduct) =>
-    ServerApi.addProduct(newProduct, this.getAllProducts)
+    ServerApi.addProduct(newProduct)
+      .then(this.getAllProducts)
 
   updateProduct = (product) =>
-    ServerApi.updateProduct(product, this.getAllProducts)
+    ServerApi.updateProduct(product)
+      .then(this.getAllProducts)
 
   deleteProduct = (productId) =>
-    ServerApi.deleteProduct(productId, this.getAllProducts)
+    ServerApi.deleteProduct(productId)
+      .then(this.getAllProducts)
 
   findProductById = (productId) => {
     for (let i = 0; i < this.state.products.length; i++) {
@@ -43,17 +47,24 @@ class DomainDataProvider extends Component {
     }
   }
 
-  signUpUser = (user) => {
-    ServerApi.signUpUser(user, (savedUser) => this.setState({
-      user: savedUser
-    }))
-  }
+  signUpUser = (user) =>
+    ServerApi.signUpUser(user)
+      .then((loggedInUser) => {
+        this.setState({
+          user: loggedInUser
+        })
+        return loggedInUser
+      })
 
-  loginUser = (email, password) => {
-    ServerApi.loginUser(email, password, () => {
-      console.log('login user called')
-    })
-  }
+  loginUser = (email, password) =>
+    ServerApi.loginUser(email, password)
+      .then((loggedInUser) => {
+        this.setState({
+          user: loggedInUser
+        })
+        return loggedInUser
+      })
+
   render () {
     const domainData = {
       isLoaded: this.state.isLoaded,
@@ -62,7 +73,8 @@ class DomainDataProvider extends Component {
       findProductById: this.findProductById,
       updateProduct: this.updateProduct,
       deleteProduct: this.deleteProduct,
-      signUpUser: this.signUpUser
+      signUpUser: this.signUpUser,
+      loginUser: this.loginUser
     }
 
     return this.state.isLoaded ? <Layout domainData={domainData} /> : null

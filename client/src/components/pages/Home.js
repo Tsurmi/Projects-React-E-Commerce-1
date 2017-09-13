@@ -2,15 +2,24 @@ import React from 'react'
 
 const styles = {
   home: {
-    backgroundImage: `url(http://www.barmelusine.com/uploads/_800x800_crop_center-center_75/gallery-01.jpg)`,
+    backgroundImage: `url(https://pbs.twimg.com/media/CUmGoUVVEAES895.jpg)`,
     width: '100vw',
     height: '100vh',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     scrollBehavior: 'smooth'
+  },
+  homeHeader: {
+    fontFamily: 'verdana',
+    fontSize: 20,
+    color: 'white'
   }
 }
 const Home = () =>
-  <div style={styles.home}></div>
+  <div style={styles.home}>
+    <div style={styles.homeHeader}>
+      <h1> Union Made Goods </h1>
+    </div>
+  </div>
 
 export default Home

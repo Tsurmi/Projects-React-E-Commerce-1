@@ -7,14 +7,14 @@ const styles = {
     left: 0,
     right: 0,
     height: 35,
-    backgroundColor: 'blue',
+    backgroundColor: 'lightblue',
     display: 'flex',
     alignItems: 'center',
     paddingLeft: 20,
     paddingRight: 20
   },
   p: {
-    color: 'white',
+    color: 'black',
     fontSize: 20
   }
 }

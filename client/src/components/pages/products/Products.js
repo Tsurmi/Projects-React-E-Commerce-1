@@ -11,7 +11,7 @@ const propTypes = {
 
 const styles = {
   product: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'grey',
     backgroundSize: 'cover',
     width: '100vw',
     height: '100vh'

@@ -15,7 +15,7 @@ const propTypes = {
 
 const styles = {
   form: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'grey',
     width: '100vw',
     height: '100vh',
     display: 'flex',
@@ -23,10 +23,10 @@ const styles = {
     alignItems: 'center',
     marginBottom: 50,
     fontFamily: 'verdana',
-    fontSize: '20'
+    fontSize: 20
   },
   signHeader: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'grey',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -37,7 +37,7 @@ const styles = {
     width: '30%'
   },
   mainSign: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'grey',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -69,7 +69,7 @@ const SignUpForm = (props) => {
           value={props.password}
           onChange={props.onPasswordChanged}
         />
-        <input 
+        <input
           type='submit'
           value='Submit User'
         />

@@ -11,7 +11,7 @@ const propTypes = {
 
 const styles = {
   loginForm: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'grey',
     width: '100vw',
     height: '100vh',
     display: 'flex',
@@ -21,7 +21,7 @@ const styles = {
     fontFamily: 'verdana'
   },
   mainForm: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'grey',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -29,7 +29,7 @@ const styles = {
   },
 
   mainHeader: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'grey',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

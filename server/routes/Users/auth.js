@@ -5,22 +5,18 @@ module.exports = (app, passport) => {
     const authenticator = passport.authenticate('local-signup', (err, user, info) =>{
       if (err) {
         return next(err)
-      }
-      else if (!user) {
+      } else if (!user) {
         return res.status(404).json(info.message)
-      }
-      else {
+      } else {
         user.save((err) => {
           if (err) {
             return res.status(500).json(err)
-          }
-          else {
+          } else {
             req.logIn(user, (err) => {
               if (err) {
                 return res.status(500).json(err)
-              }
-              else {
-                return res.json(user)
+              } else {
+                return res.json({data: user})
               }
             })
           }
@@ -42,7 +38,7 @@ module.exports = (app, passport) => {
         console.log(user)
         return res.json({
           message: 'Successfully logged in. Welcome back!',
-          user: user
+          data: user
         })
       })
     })

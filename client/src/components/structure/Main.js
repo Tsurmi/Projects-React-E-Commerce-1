@@ -15,7 +15,7 @@ const styles = {
   main: {
     position: 'fixed',
     padding: 0,
-    top: 28,
+    top: 50,
     bottom: 25,
     left: 0,
     right: 0

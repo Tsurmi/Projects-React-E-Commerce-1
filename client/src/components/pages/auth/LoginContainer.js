@@ -25,12 +25,15 @@ class LoginContainer extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    console.log('domain data')
-    this.props.domainData.loginUser(this.state)
-    this.props.history.push('/')
-}
+    console.log('domain data', this.props.domainData)
+    this.props.domainData.loginUser(this.state.email, this.state.password)
+      .then((user) => {
+        this.porps.history.push('/')
+        alert('You are logged in')
+      })
+  }
 
-render () {
+  render () {
     return (
       <LoginForm
         email={this.state.email}
