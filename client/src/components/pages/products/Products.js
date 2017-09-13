@@ -12,6 +12,7 @@ const propTypes = {
 const styles = {
   product: {
     backgroundColor: 'lightblue',
+    backgroundSize: 'cover',
     width: '100vw',
     height: '100vh'
   }
@@ -20,7 +21,6 @@ const styles = {
 const Products = (props) =>
   <div style={styles.product}>
     <h1>Products Page</h1>
-
     <Route
       path='/products' exact
       render={(routeProps) => <ProductList

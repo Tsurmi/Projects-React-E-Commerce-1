@@ -6,12 +6,11 @@ const styles = {
     width: '100vw',
     height: '100vh',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    scrollBehavior: 'smooth'
   }
 }
 const Home = () =>
-  <div style={styles.home}>
-    <h1></h1>
-  </div>
+  <div style={styles.home}></div>
 
 export default Home

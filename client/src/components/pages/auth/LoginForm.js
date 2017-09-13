@@ -10,16 +10,39 @@ const propTypes = {
 }
 
 const styles = {
-  login: {
+  loginForm: {
     backgroundColor: 'lightblue',
     width: '100vw',
-    height: '100vh'
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 50,
+    fontFamily: 'verdana'
+  },
+  mainForm: {
+    backgroundColor: 'lightblue',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  mainHeader: {
+    backgroundColor: 'lightblue',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '50%'
   }
 }
 const LoginForm = (props) =>
-  <div style={styles.login}>
-    <h1> Login </h1>
-    <form onSubmit={props.onSubmit}>
+  <div style={styles.mainForm}>
+    <div style={styles.mainHeader}>
+      <h1> Login </h1>
+    </div>
+    <form style={styles.loginForm} onSubmit={props.onSubmit}>
       Email: <input type='text'
         value={props.email}
         onChange={props.onEmailChanged} />

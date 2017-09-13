@@ -11,8 +11,6 @@ const styles = {
 }
 
 const About = () =>
-  <div style={styles.about}>
-    <h1></h1>
-  </div>
+  <div style={styles.about}></div>
 
 export default About
