@@ -6,6 +6,7 @@ import About from '../pages/About'
 import ProfileContainer from '../pages/ProfileContainer'
 import Products from '../pages/products/Products'
 import Cart from '../pages/cart/Cart'
+import Checkout from '../pages/checkout/Checkout'
 import SignUpFormContainer from '../pages/auth/SignUpFormContainer'
 import LoginContainer from '../pages/auth/LoginContainer'
 
@@ -33,6 +34,7 @@ const Main = (props, i) =>
     <Route path='/login' render={() => <LoginContainer domainData={props.domainData} />} />
     <Route path='/profile' render={(routeProps) => <ProfileContainer domainData={props.domainData} history={routeProps.history} />} />
     <Route path='/cart' render={() => <Cart domainData={props.domainData} />} />
+    <Route path='/checkout' render={() => <Checkout domainData={props.domainData} />} />
   </main>
 
 Main.propTypes = propTypes

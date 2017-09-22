@@ -12,7 +12,11 @@ class DomainDataProvider extends Component {
     isLoaded: false,
     products: [],
     user: null,
-    cart: {}
+    cart: {},
+    address: {
+      'billing': {},
+      'shipping': {}
+    }
   }
 
   methods = {
@@ -82,13 +86,23 @@ class DomainDataProvider extends Component {
     },
     removeFromCart: (productId) => {
       const cart = this.state.cart
-      console.log(productId, cart[productId])
       if (cart[productId] > 1) {
         cart[productId] -= 1
       } else {
         delete cart[productId]
       }
       this.setState({cart})
+    },
+    totalCart: () => {
+      const products = this.state.products
+      const cart = this.state.cart
+      return products.filter((product) => cart[product._id])
+        .reduce((sum, product) => sum + (product.price * cart[product._id]), 0).toFixed(2)
+    },
+    updateAddressField: (value, field, type) => {
+      const address = this.state.address
+      address[type][field] = value
+      this.setState({address})
     }
   }
 

@@ -1,4 +1,10 @@
 import React from 'react'
+import injectSheet from 'react-jss'
+import * as AppPropTypes from '../../lib/propTypes'
+
+const propTypes = {
+  domainData: AppPropTypes.domainData
+}
 
 const styles = {
   home: {
@@ -14,11 +20,17 @@ const styles = {
     height: '100%'
   }
 }
-const Home = () =>
-  <div style={styles.home}>
-    <div style={styles.homeHeader}>
-      <img style={styles.thumbnail} src='http://i65.tinypic.com/wu45dv.jpg' />
+
+const enhancer = injectSheet(styles)
+
+const Home = (props) =>
+  <div className={props.classes.home}>
+    <div className={props.classes.homeHeader}>
+      <img className={props.classes.thumbnail} src='http://i65.tinypic.com/wu45dv.jpg' />
     </div>
   </div>
 
-export default Home
+Home.propTypes = {
+  classes: propTypes.object
+}
+export default enhancer(Home)

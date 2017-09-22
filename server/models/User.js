@@ -6,11 +6,13 @@ const UserSchema = new mongoose.Schema({
     email: String,
     password: String,
     firstName: String,
-    lastName: String
+    lastName: String,
+    isAdmin: Boolean
   },
   cart: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
   orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}],
-  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
+  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}],
+  isAdmin: Boolean
 })
 
 UserSchema.methods.loadData = function (data) {
