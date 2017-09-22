@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import injectSheet from 'react-jss'
 
 const propTypes = {
   email: PropTypes.string.isRequired,
@@ -11,7 +12,7 @@ const propTypes = {
 
 const styles = {
   loginForm: {
-    backgroundColor: 'grey',
+    backgroundColor: '#2c3e50',
     width: '100vw',
     height: '100vh',
     display: 'flex',
@@ -21,7 +22,7 @@ const styles = {
     fontFamily: 'verdana'
   },
   mainForm: {
-    backgroundColor: 'grey',
+    backgroundColor: '#2c3e50',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -29,7 +30,7 @@ const styles = {
   },
 
   mainHeader: {
-    backgroundColor: 'grey',
+    backgroundColor: '#2c3e50',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -37,12 +38,15 @@ const styles = {
     width: '50%'
   }
 }
+
+const enhancer = injectSheet(styles)
+
 const LoginForm = (props) =>
-  <div style={styles.mainForm}>
-    <div style={styles.mainHeader}>
+  <div className={props.classes.mainForm}>
+    <div className={props.classes.mainHeader}>
       <h1> Login </h1>
     </div>
-    <form style={styles.loginForm} onSubmit={props.onSubmit}>
+    <form className={props.classes.loginForm} onSubmit={props.onSubmit}>
       Email: <input type='text'
         value={props.email}
         onChange={props.onEmailChanged} />
@@ -57,6 +61,10 @@ const LoginForm = (props) =>
     </form>
   </div>
 
+LoginForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
 LoginForm.propTypes = propTypes
 
-export default LoginForm
+export default enhancer(LoginForm)

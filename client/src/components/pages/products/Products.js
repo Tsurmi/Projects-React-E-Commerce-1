@@ -4,6 +4,8 @@ import * as AppPropTypes from '../../../lib/propTypes'
 import ProductList from './ProductList'
 import AddProductContainer from './AddProductContainer'
 import EditProductContainer from './EditProductContainer'
+import injectSheet from 'react-jss'
+import PropTypes from 'prop-types'
 
 const propTypes = {
   domainData: AppPropTypes.domainData
@@ -11,16 +13,27 @@ const propTypes = {
 
 const styles = {
   product: {
-    backgroundColor: 'grey',
+    backgroundColor: '#2c3e50',
     backgroundSize: 'cover',
-    width: '100vw',
-    height: '100vh'
+    width: '100%',
+    height: '100%',
+    padding: 10,
+    overflow: 'scroll'
+  },
+  p: {
+    color: 'white',
+    fontFamily: 'Palatino',
+    fontSize: 40,
+    margin: 20,
+    textAlign: 'center'
   }
 }
 
+const enhancer = injectSheet(styles)
+
 const Products = (props) =>
-  <div style={styles.product}>
-    <h1>Products Page</h1>
+  <div className={props.classes.product}>
+    <h1 className={props.classes.p} >Coffee Selection</h1>
     <Route
       path='/products' exact
       render={(routeProps) => <ProductList
@@ -42,7 +55,10 @@ const Products = (props) =>
       }
     />
   </div>
+Products.propTypes = {
+  classes: PropTypes.object.isRequired
+}
 
 Products.propTypes = propTypes
 
-export default Products
+export default enhancer(Products)

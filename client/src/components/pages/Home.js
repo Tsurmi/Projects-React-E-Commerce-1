@@ -2,23 +2,22 @@ import React from 'react'
 
 const styles = {
   home: {
-    backgroundImage: `url(https://pbs.twimg.com/media/CUmGoUVVEAES895.jpg)`,
-    width: '100vw',
-    height: '100vh',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    scrollBehavior: 'smooth'
+    backgroundRepeat: 'no-repeat'
   },
   homeHeader: {
     fontFamily: 'verdana',
     fontSize: 20,
-    color: 'white'
+    color: 'lightblue'
+  },
+  thumbnail: {
+    width: '100%',
+    height: '100%'
   }
 }
 const Home = () =>
   <div style={styles.home}>
     <div style={styles.homeHeader}>
-      <h1> Union Made Goods </h1>
+      <img style={styles.thumbnail} src='http://i65.tinypic.com/wu45dv.jpg' />
     </div>
   </div>
 

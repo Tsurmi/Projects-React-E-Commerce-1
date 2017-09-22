@@ -4,64 +4,39 @@ const ajaxRequest = (uri, method, body) => {
   })
 
   const options = {
-    headers,
+    headers: headers,
     method: method,
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    credentials: 'include'
   }
 
   return fetch(`/api/${uri}`, options)
+    .then(handleErrors)
     .then(response => response.json())
     .then(json => json.data)
 }
 
-const getAllProducts = () => ajaxRequest('products', 'GET')
-
-const addProduct = (newProduct) => ajaxRequest('products', 'POST', newProduct)
-
-const deleteProduct = (productId) => ajaxRequest(`products/${productId}`, 'DELETE')
-
-const updateProduct = (product) => ajaxRequest(`products/${product._id}`, 'PUT', product)
-
-const signUpUser = (user) => {
-  const headers = new Headers({
-    'Content-Type': 'application/json'
-  })
-
-  const options = {
-    headers,
-    method: 'POST',
-    body: JSON.stringify(user)
+const handleErrors = response => {
+  if (!response.ok) {
+    const err = Error(response.statusText)
+    err.statusCode = response.status
+    throw err
   }
-
-  return fetch('/api/signup', options)
-    .then(response => response.json())
-    .then(json => json.data)
-    .then(data => {
-      console.log(data)
-      return data
-    })
-    .catch(err => console.log(err))
+  return response
 }
 
-const loginUser = (email, password) => {
-  const headers = new Headers({
-    'Content-Type': 'application/json'
-  })
+export const getAllProducts = () => ajaxRequest('products', 'GET')
 
-  const options = {
-    headers,
-    method: 'POST',
-    body: JSON.stringify({email, password})
-  }
+export const addProduct = (newProduct) => ajaxRequest('products', 'POST', newProduct)
 
-  return fetch('/api/login', options)
-    .then(response => response.json())
-    .then(json => json.data)
-    .then(data => {
-      console.log(data)
-      return data
-    })
-    .catch(err => console.log(err))
-}
+export const deleteProduct = (productId) => ajaxRequest(`products/${productId}`, 'DELETE')
 
-export {getAllProducts, addProduct, updateProduct, deleteProduct, signUpUser, loginUser}
+export const updateProduct = (product) => ajaxRequest(`products/${product._id}`, 'PUT', product)
+
+export const signupUser = (user) => ajaxRequest('signup', 'POST', user)
+
+export const loginUser = (email, password) => ajaxRequest('login', 'POST', {email, password})
+
+export const getUser = () => ajaxRequest('get_user', 'GET')
+
+export const logout = () => ajaxRequest('logout', 'GET')

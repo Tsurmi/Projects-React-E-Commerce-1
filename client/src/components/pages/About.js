@@ -1,10 +1,9 @@
+import PropTypes from 'prop-types'
 import React from 'react'
+import injectSheet from 'react-jss'
 
 const styles = {
   about: {
-    backgroundColor: 'grey',
-    width: '100vw',
-    height: '100vh',
     backgroundRepeat: 'no-repeat',
     display: 'flex',
     flexDirection: 'column',
@@ -18,16 +17,28 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'verdana',
-    fontSize: '20'
+    fontSize: 20,
+    color: 'lightblue'
+  },
+  thumbnail: {
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    opacity: 0.8
   }
 }
 
-const About = () =>
-  <div style={styles.about}>
-    <div style={styles.aboutMain}>
-      <h1> All About US!</h1>
-      <img style={styles.thumbnail} src='http://images.gawker.com/185hvnhrtmlkdjpg/c_fit,fl_progressive,q_80,w_636.jpg' />
+const enhancer = injectSheet(styles)
+
+const About = (props) =>
+  <div className={props.classes.about}>
+    <div className={props.classes.aboutMain}>
+      <img className={props.classes.thumbnail} src='http://i65.tinypic.com/af9ann.jpg' />
     </div>
   </div>
 
-export default About
+About.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default enhancer(About)

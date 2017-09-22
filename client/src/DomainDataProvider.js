@@ -11,70 +11,102 @@ class DomainDataProvider extends Component {
   state = {
     isLoaded: false,
     products: [],
-    user: null
+    user: null,
+    cart: {}
   }
 
-  componentDidMount () {
-    this.getAllProducts()
-  }
+  methods = {
+    getAllProducts: () =>
+      ServerApi.getAllProducts()
+        .then(products =>
+          this.setState({
+            isLoaded: true,
+            products: products
+          })),
 
-  getAllProducts = () =>
-    ServerApi.getAllProducts()
-      .then(products =>
-        this.setState({
-          isLoaded: true,
-          products: products
-        }))
+    addProduct: (newProduct) =>
+      ServerApi.addProduct(newProduct)
+        .then(this.methods.getAllProducts),
 
-  addProduct = (newProduct) =>
-    ServerApi.addProduct(newProduct)
-      .then(this.getAllProducts)
+    updateProduct: (product) =>
+      ServerApi.updateProduct(product)
+        .then(this.methods.getAllProducts),
 
-  updateProduct = (product) =>
-    ServerApi.updateProduct(product)
-      .then(this.getAllProducts)
+    deleteProduct: (productId) =>
+      ServerApi.deleteProduct(productId)
+        .then(this.methods.getAllProducts),
 
-  deleteProduct = (productId) =>
-    ServerApi.deleteProduct(productId)
-      .then(this.getAllProducts)
-
-  findProductById = (productId) => {
-    for (let i = 0; i < this.state.products.length; i++) {
-      const currentProduct = this.state.products[i]
-      if (productId === currentProduct._id) {
-        return currentProduct
+    findProductById: (productId) => {
+      for (let i = 0; i < this.state.products.length; i++) {
+        const currentProduct = this.state.products[i]
+        if (productId === currentProduct._id) {
+          return currentProduct
+        }
       }
+    },
+
+    signupUser: (user) =>
+      ServerApi.signupUser(user)
+        .then((loggedInUser) => {
+          this.setState({
+            user: loggedInUser
+          })
+          return loggedInUser
+        }),
+
+    loginUser: (email, password) =>
+      ServerApi.loginUser(email, password)
+        .then((loggedInUser) => {
+          this.setState({
+            user: loggedInUser
+          })
+          return loggedInUser
+        }),
+
+    getUser: () =>
+      ServerApi.getUser()
+        .then(user => {
+          this.setState({user})
+          return user
+        }),
+
+    logout: () =>
+      ServerApi.logout()
+        .then(() => this.setState({user: null})),
+
+    addToCart: (productId) => {
+      const cart = this.state.cart
+      cart[productId] = cart[productId] || 0
+      cart[productId] += 1
+      this.setState({cart})
+    },
+    removeFromCart: (productId) => {
+      const cart = this.state.cart
+      console.log(productId, cart[productId])
+      if (cart[productId] > 1) {
+        cart[productId] -= 1
+      } else {
+        delete cart[productId]
+      }
+      this.setState({cart})
     }
   }
 
-  signUpUser = (user) =>
-    ServerApi.signUpUser(user)
-      .then((loggedInUser) => {
+  componentDidMount () {
+    this.methods.getAllProducts()
+    ServerApi.getUser()
+      .then(user =>
         this.setState({
-          user: loggedInUser
-        })
-        return loggedInUser
-      })
-
-  loginUser = (email, password) =>
-    ServerApi.loginUser(email, password)
-      .then((loggedInUser) => {
-        this.setState({
-          user: loggedInUser
-        })
-        return loggedInUser
-      })
+          user: user
+        }))
+  }
 
   render () {
     const domainData = {
-      isLoaded: this.state.isLoaded,
-      products: this.state.products,
-      addProduct: this.addProduct,
-      findProductById: this.findProductById,
-      updateProduct: this.updateProduct,
-      deleteProduct: this.deleteProduct,
-      signUpUser: this.signUpUser,
-      loginUser: this.loginUser
+      ...this.state,
+      ...this.methods,
+      loggedIn: this.state.user != null,
+      loggedOut: this.state.user == null
     }
 
     return this.state.isLoaded ? <Layout domainData={domainData} /> : null

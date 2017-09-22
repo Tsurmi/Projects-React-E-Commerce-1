@@ -7,7 +7,7 @@ const styles = {
     left: 0,
     right: 0,
     height: 35,
-    backgroundColor: 'lightblue',
+    backgroundColor: '#2980b9',
     display: 'flex',
     alignItems: 'center',
     paddingLeft: 20,

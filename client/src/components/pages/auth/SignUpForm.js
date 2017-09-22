@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import injectSheet from 'react-jss'
 
 const propTypes = {
   email: PropTypes.string,
@@ -15,7 +16,7 @@ const propTypes = {
 
 const styles = {
   form: {
-    backgroundColor: 'grey',
+    backgroundColor: '#2c3e50',
     width: '100vw',
     height: '100vh',
     display: 'flex',
@@ -26,7 +27,7 @@ const styles = {
     fontSize: 20
   },
   signHeader: {
-    backgroundColor: 'grey',
+    backgroundColor: '#2c3e50',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -37,7 +38,7 @@ const styles = {
     width: '30%'
   },
   mainSign: {
-    backgroundColor: 'grey',
+    backgroundColor: '#2c3e50',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -45,14 +46,16 @@ const styles = {
   }
 }
 
+const enhancer = injectSheet(styles)
+
 const SignUpForm = (props) => {
   return (
-    <div style={styles.mainSign}>
-      <div style={styles.signHeader}>
+    <div className={props.classes.mainSign}>
+      <div className={props.classes.signHeader}>
         <h1> Register New User </h1>
-        <img style={styles.thumbnail} src='http://www.freeiconspng.com/uploads/add-user-icon--icon-search-engine-28.png' />
+        <img className={props.classes.thumbnail} src='http://www.freeiconspng.com/uploads/add-user-icon--icon-search-engine-28.png' />
       </div>
-      <form style={styles.form} onSubmit={props.onSubmit}>
+      <form className={props.classes.form} onSubmit={props.onSubmit}>
         First Name: <input type='text'
           value={props.firstName}
           onChange={props.onFirstNameChanged}
@@ -78,6 +81,10 @@ const SignUpForm = (props) => {
   )
 }
 
+SignUpForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
 SignUpForm.propTypes = propTypes
 
-export default SignUpForm
+export default enhancer(SignUpForm)
